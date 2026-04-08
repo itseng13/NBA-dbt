@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: dim_teams
+    columns:
+      - name: team_id
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        tests:
+          - not_null
+      - name: conference
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['East', 'West']
+
+  - name: fct_games
+    columns:
+      - name: game_id
+        tests:
+          - unique
+          - not_null
+      - name: home_team_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: team_id
+      - name: visitor_team_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: team_id
+      - name: winning_side
+        tests:
+          - accepted_values:
+              values: ['home', 'away']
+              
+  - name: fct_team_season_stats
+    columns:
+      - name: team_id
+        tests:
+          - unique
+          - not_null
+      - name: team_name
+        tests:
+          - not_null
+      - name: conference
+        tests:
+          - not_null
+      - name: win_pct
+        tests:
+          - not_null

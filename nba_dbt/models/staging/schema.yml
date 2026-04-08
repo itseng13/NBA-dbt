@@ -1,0 +1,50 @@
+version: 2
+
+sources:
+  - name: nba_raw
+    database: NBA_DEV
+    schema: RAW
+    tables:
+      - name: NBA_TEAMS
+      - name: NBA_PLAYERS
+      - name: NBA_GAMES
+
+models:
+  - name: stg_teams
+    columns:
+      - name: team_id
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        tests:
+          - not_null
+
+  - name: stg_players
+    columns:
+      - name: player_id
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        tests:
+          - not_null
+      - name: last_name
+        tests:
+          - not_null
+
+  - name: stg_games
+    columns:
+      - name: game_id
+        tests:
+          - unique
+          - not_null
+      - name: home_team_id
+        tests:
+          - not_null
+      - name: visitor_team_id
+        tests:
+          - not_null
+      - name: game_date
+        tests:
+          - not_null
