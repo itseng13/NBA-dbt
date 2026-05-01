@@ -18,7 +18,7 @@ balldontlie API → Python ingestion → Snowflake RAW → dbt Staging → dbt M
 
 ## DAG
 
-![dbt Lineage Graph](images/dag.png)
+<img width="1828" height="1588" alt="image" src="https://github.com/user-attachments/assets/b6c0c172-83d3-4253-ab50-498b10a8ea17" />
 
 ## Project Structure
 
